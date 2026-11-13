@@ -1,0 +1,10 @@
+[
+  {"time": "2026-11-10 09:00:01", "level": "INFO", "message": "Server started"},
+  {"time": "2026-11-10 09:05:12", "level": "INFO", "message": "User login: harsh"},
+  {"time": "2026-11-10 09:10:45", "level": "WARNING", "message": "Disk usage at 85%"},
+  {"time": "2026-11-10 09:15:30", "level": "ERROR", "message": "Database connection failed"},
+  {"time": "2026-11-10 09:16:10", "level": "INFO", "message": "Database connected"},
+  {"time": "2026-11-10 09:30:55", "level": "ERROR", "message": "File not found: report.pdf"},
+  {"time": "2026-11-10 09:40:00", "level": "WARNING", "message": "High memory usage"},
+  {"time": "2026-11-10 09:45:20", "level": "INFO", "message": "User logout: harsh"}
+]

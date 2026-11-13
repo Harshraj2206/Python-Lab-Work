@@ -1,0 +1,8 @@
+2026-11-10 09:00:01 INFO Server started
+2026-11-10 09:05:12 INFO User login: harsh
+2026-11-10 09:10:45 WARNING Disk usage at 85%
+2026-11-10 09:15:30 ERROR Database connection failed
+2026-11-10 09:16:02 INFO Retrying database connection
+2026-11-10 09:16:10 INFO Database connected
+2026-11-10 09:30:55 ERROR File not found: report.pdf
+2026-11-10 09:45:20 INFO User logout: harsh

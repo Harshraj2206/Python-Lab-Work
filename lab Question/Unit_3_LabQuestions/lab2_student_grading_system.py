@@ -9,19 +9,23 @@ def get_grade(avg):
         return "C"
     elif avg >= 40:
         return "D"
-    return "F"
+    else:
+        return "F"
 
 
 students = {}
 n = int(input("Enter number of students: "))
 
 for i in range(n):
-    name = input(f"Student {i + 1} name: ")
-    marks = list(map(int, input("Enter marks of 3 subjects (space separated): ").split()))
-    students[name] = marks
+    name = input("Enter student name: ")
+    m1 = int(input("Marks in subject 1: "))
+    m2 = int(input("Marks in subject 2: "))
+    m3 = int(input("Marks in subject 3: "))
+    students[name] = [m1, m2, m3]
 
-print("\nName\tTotal\tAverage\tGrade")
-for name, marks in students.items():
-    total = sum(marks)
-    avg = total / len(marks)
-    print(f"{name}\t{total}\t{avg:.2f}\t{get_grade(avg)}")
+print("\nName  Total  Average  Grade")
+for name in students:
+    marks = students[name]
+    total = marks[0] + marks[1] + marks[2]
+    avg = total / 3
+    print(name, total, round(avg, 2), get_grade(avg))

@@ -1,24 +1,22 @@
 # Mini Project: OTP Generator
 import random
 
+# make a 6 digit OTP
+otp = ""
+for i in range(6):
+    otp = otp + str(random.randint(0, 9))
 
-def generate_otp(length=6):
-    otp = ""
-    for _ in range(length):
-        otp += str(random.randint(0, 9))
-    return otp
-
-
-otp = generate_otp()
 print("Your OTP is:", otp)
 
-tries = 3
-while tries > 0:
+verified = False
+for attempt in range(3):
     entered = input("Enter the OTP: ")
     if entered == otp:
-        print("OTP verified successfully!")
+        verified = True
         break
-    tries -= 1
-    print("Wrong OTP. Attempts left:", tries)
+    print("Wrong OTP. Attempts left:", 2 - attempt)
+
+if verified:
+    print("OTP verified successfully!")
 else:
     print("Verification failed.")

@@ -10,12 +10,11 @@ while True:
         name = input("Name: ")
         phone = input("Phone: ")
         email = input("Email: ")
-        contacts.append({"name": name, "phone": phone, "email": email})
+        contact = {"name": name, "phone": phone, "email": email}
+        contacts.append(contact)
         print("Contact added.")
 
     elif choice == "2":
-        if not contacts:
-            print("No contacts.")
         for c in contacts:
             print(c["name"], "-", c["phone"], "-", c["email"])
 
@@ -23,20 +22,22 @@ while True:
         name = input("Enter name to search: ")
         found = False
         for c in contacts:
-            if c["name"].lower() == name.lower():
+            if c["name"] == name:
                 print(c["name"], "-", c["phone"], "-", c["email"])
                 found = True
-        if not found:
+        if found == False:
             print("Contact not found.")
 
     elif choice == "4":
         name = input("Enter name to delete: ")
+        found = False
         for c in contacts:
-            if c["name"].lower() == name.lower():
+            if c["name"] == name:
                 contacts.remove(c)
+                found = True
                 print("Contact deleted.")
                 break
-        else:
+        if found == False:
             print("Contact not found.")
 
     elif choice == "5":

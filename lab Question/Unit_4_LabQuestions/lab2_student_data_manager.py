@@ -1,7 +1,7 @@
 # Lab Exercise 2: Student data manager using files
-import os
 
-file_path = os.path.join(os.path.dirname(__file__), "students.txt")
+# create the file if it does not exist
+open("students.txt", "a").close()
 
 while True:
     print("\n1. Add student  2. View students  3. Search student  4. Exit")
@@ -11,32 +11,29 @@ while True:
         roll = input("Roll number: ")
         name = input("Name: ")
         marks = input("Marks: ")
-        with open(file_path, "a") as f:
-            f.write(f"{roll},{name},{marks}\n")
+        f = open("students.txt", "a")
+        f.write(roll + "," + name + "," + marks + "\n")
+        f.close()
         print("Student saved.")
 
     elif choice == "2":
-        try:
-            with open(file_path, "r") as f:
-                for line in f:
-                    roll, name, marks = line.strip().split(",")
-                    print(roll, name, marks)
-        except FileNotFoundError:
-            print("No records found.")
+        f = open("students.txt", "r")
+        for line in f:
+            print(line.strip())
+        f.close()
 
     elif choice == "3":
         roll_no = input("Enter roll number: ")
-        try:
-            with open(file_path, "r") as f:
-                for line in f:
-                    roll, name, marks = line.strip().split(",")
-                    if roll == roll_no:
-                        print(roll, name, marks)
-                        break
-                else:
-                    print("Student not found.")
-        except FileNotFoundError:
-            print("No records found.")
+        found = False
+        f = open("students.txt", "r")
+        for line in f:
+            data = line.strip().split(",")
+            if data[0] == roll_no:
+                print(line.strip())
+                found = True
+        f.close()
+        if found == False:
+            print("Student not found.")
 
     elif choice == "4":
         break

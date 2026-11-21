@@ -1,27 +1,20 @@
 # Mini Project: JSON-based log file analyzer
 import json
-import os
 
-folder = os.path.dirname(__file__)
-input_file = os.path.join(folder, "logs.json")
-output_file = os.path.join(folder, "log_summary.json")
-
-try:
-    with open(input_file, "r") as f:
-        logs = json.load(f)
-except FileNotFoundError:
-    print("logs.json not found.")
-    logs = []
-except json.JSONDecodeError:
-    print("Invalid JSON format.")
-    logs = []
+f = open("logs.json", "r")
+logs = json.load(f)
+f.close()
 
 summary = {}
+errors = []
 for log in logs:
     level = log["level"]
-    summary[level] = summary.get(level, 0) + 1
-
-errors = [log for log in logs if log["level"] == "ERROR"]
+    if level in summary:
+        summary[level] = summary[level] + 1
+    else:
+        summary[level] = 1
+    if level == "ERROR":
+        errors.append(log)
 
 print("Total logs:", len(logs))
 print("Count by level:", summary)
@@ -29,7 +22,8 @@ print("\nError messages:")
 for e in errors:
     print(e["time"], "-", e["message"])
 
-with open(output_file, "w") as f:
-    json.dump({"total": len(logs), "by_level": summary, "errors": errors}, f, indent=4)
-
+result = {"total": len(logs), "by_level": summary, "errors": errors}
+f = open("log_summary.json", "w")
+json.dump(result, f, indent=4)
+f.close()
 print("\nSummary saved to log_summary.json")
